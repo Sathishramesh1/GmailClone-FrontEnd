@@ -1,6 +1,5 @@
 import React, { useEffect} from 'react'
-import styled from 'styled-components';
-import { Box, IconButton,  } from '@mui/material';
+import {  IconButton,  } from '@mui/material';
 import Checkbox from "@mui/material/Checkbox";
 import { Star, StarBorder } from '@mui/icons-material';
 import { API_URLS } from '../service/globalUrl';
@@ -21,11 +20,11 @@ function Inbox() {
  
   const navigate=useNavigate();
   const dispatch=useDispatch();
-  // const token=useSelector(state=>state.email.user.token);
   const state=useSelector(state=>state.email);
   const {inbox}=state
   const token=localStorage.getItem('token');
   
+  //apis for delete,star marking,Important labelling and get inbox mail
 const mailDelete=useApi(API_URLS.deleteEmail);
 const getInbox=useApi(API_URLS.getInboxEmail);
 const toggler=useApi(API_URLS.toggleStarredEmail);
@@ -35,9 +34,7 @@ const ImportantLabel=useApi(API_URLS.toggleImportantEmail);
 
 //function to open single mail
 const handleMailClick=(event)=>{
- 
   let messageid=event.target.id;
-
   if(messageid){
      navigate(`/inbox/${messageid}`)
   }else{
@@ -50,9 +47,9 @@ const handleMailClick=(event)=>{
 //function to handle delete
 const handleDelete=async(event)=>{
   try {
-    let messageid=event.target.closest('.row').children[1].id;
+  let messageid=event.target.closest('.row').children[1].id;
   const params=messageid;
-  console.log(params);
+  // console.log(params);
   dispatch(setDelete(messageid));
    const res= await mailDelete.call({},token,params);
    console.log(res);
@@ -65,17 +62,15 @@ const handleDelete=async(event)=>{
   
   }
   } catch (error) {
-   console.log(error);
-  }
-    
-  }
+   console.log(error);}}
+
 
   //function star toggling
 const toggleStarredMail=async(event)=>{
   
   try {
     const messageid=event.target.closest('.row').children[1].id;
-console.log(messageid);
+// console.log(messageid);
 const params=messageid  
   console.log(token,"jwt");
   dispatch(setStartoggler(params));
@@ -91,11 +86,10 @@ const params=messageid
   const toggleImportantMail=async(event)=>{
     try {
       const messageid=event.target.closest('.row').children[1].id;
-    console.log(messageid);
+    // console.log(messageid);
     const params=messageid  
       // console.log(token,"jwt");
       dispatch(setImportanttoggler(params));
-      // console.log(...send);
       let res=await ImportantLabel.call({},token,params);
       console.log(res);
       

@@ -111,3 +111,82 @@ export const defaultTheme = createTheme({
   
 });
 
+
+//sidebar icon style
+export const SideIconWrapper=styled(Container)({
+  display:'flex',
+  flexDirection:'column',
+  paddingLeft:'0 !important',
+
+});
+export const ComposeWrapper=styled(Box)({
+  display:'flex',
+  justifyContent:'flex-start', 
+  
+  '& > Button':{
+      background:'#c2e7ff',
+      padding:'15px',
+      marginLeft:'10px',
+      borderRadius:20,
+      border: 'none',
+       outline: 'none',
+      
+     },
+
+  '& > Button:hover':{
+      background:'#c2e7ff',
+      boxShadow:'0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)',
+      border: 'none',
+ outline: 'none'
+     },
+     '&>*:focus':{
+      background:'#c2e7ff',
+      backgroundColor:'#c2e7ff',
+      
+      boxShadow:'0 1px 2px 0 rgba(60,64,67,0.302), 0 1px 3px 1px rgba(60,64,67,0.149)',
+      border: 'none',
+ outline: 'none'
+     }
+ 
+});
+
+export const Compose=styled(Box)({
+  display:'flex',
+  justifyContent:'center',
+  placeItems:'center',
+  gap:10,
+  '& > button:hover':{
+    background:'#bfd6fb',
+    borderRadius:'0px 40px 40px 0px',
+
+   },
+})
+
+export const FeaturesWrapper=styled(Box)({
+  display:'flex',
+  justifyContent:'center',
+  flexDirection:'column',
+  marginTop:10,
+   color:'black',
+
+   '& > a.active':{
+    color:'black'
+   },
+
+  '& > *:hover':{
+       background:'#bfd6fb',
+       borderRadius:'0px 40px 40px 0px',
+
+      },
+      '& > *:active':{
+          background:'#bfd6fb',
+          borderRadius:'0px 40px 40px 0px',
+ 
+         }           
+     
+
+  },
+
+
+);
+

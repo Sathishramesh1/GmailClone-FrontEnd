@@ -27,48 +27,27 @@ import "animate.css/animate.min.css";
 
 
 
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
-
-
 export default function SignIn() {
 
   const dispatch=useDispatch();
-  
+  const navigate=useNavigate();
+   const[user,setUser]=useState({ email:"",password:""});
 
-    const navigate=useNavigate();
-    const[user,setUser]=useState({
-        email:""
-        ,password:""});
-
-        //calling end point from global url
+  //calling end point from global url for login api
   const getlogin=useApi(API_URLS.getLogin);
 
   //function to handle login
   const handleSubmit =async(event) => {
-  
     event.preventDefault();
     try {
 
-     
       const zoomTransition = cssTransition({
         enter: 'animate__animated animate__zoomIn',
         exit: 'animate__animated animate__zoomOut',
       });
         
-        const isSmallScreen=screen.width<600
+        const isSmallScreen=screen.width<600 ;
+
         toast.loading(<Loading>
           
 <img src='https://freight.cargo.site/w/1000/q/94/i/7f291a5e5e6d65edb2dd80ffe2bea40e6b2d0caa189ab3e7711c20fb59732cf9/Gmail_01_Slide_01_Slide.gif'/>
@@ -78,25 +57,23 @@ export default function SignIn() {
             transition: zoomTransition,  
            style:{
            width:isSmallScreen?"980px":"100vw",   
-           
            },
             
           });
 
           
             
-
+//calling login api
   const res= await getlogin.call(user,'');
   
-     console.log(res);
-  
+    //  console.log(res);
         event.target.reset();
         toast.dismiss();
         if(res.status){
           const token=res.data.jwttoken
           dispatch(setToken(token));
           localStorage.setItem('token',token);
-        toast.success("Login Successfully", {
+          toast.success("Login Successfully", {
             position: "top-center",
             autoClose: 1500,
             hideProgressBar: false,
@@ -122,20 +99,15 @@ export default function SignIn() {
 
         }
        
-        
+  
     } 
     catch (error) {
        
-        console.log("error",error);
-        
-    
-    }
-    };
+        console.log("error",error); }};
 
     const handlechange=(e)=>{
         e.preventDefault();
         setUser({...user,[e.target.name]: e.target.value });
-      console.log(user);
     }
 
   return (
@@ -152,7 +124,6 @@ export default function SignIn() {
        
         <Box
           sx={{
-            // marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -164,8 +135,6 @@ export default function SignIn() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-        
-          
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
@@ -218,7 +187,6 @@ export default function SignIn() {
             </Grid>
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
       </Container>
       </PageContainer> 
       </OuterContainer>

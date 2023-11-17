@@ -3,16 +3,12 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
+import {  ThemeProvider } from '@mui/material/styles';
 import useApi from '../hook/useApi';
 import { API_URLS } from '../service/globalUrl';
 import { toast } from 'react-toastify';
@@ -27,9 +23,12 @@ export default function Forget() {
 
     const [email,setEmail]=useState({email:""});
 
+    //api for forget password
 const getForget=useApi(API_URLS.getForget);
    
 
+
+//function to handle submit
   const handleSubmit = async(event) => {
     event.preventDefault();
    
@@ -62,16 +61,14 @@ const getForget=useApi(API_URLS.getForget);
 
     }
     
-  //  console.log("password reset mail sent");
    } catch (error) {
     console.log(error);
     
    }
-
- 
-  
 };
 
+
+//function to handle change
   const handlechange=(e)=>{
     e.preventDefault();
     setEmail({...email,[e.target.name]: e.target.value });
@@ -90,7 +87,6 @@ const getForget=useApi(API_URLS.getForget);
         <CssBaseline />
         <Box
           sx={{
-            // marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',

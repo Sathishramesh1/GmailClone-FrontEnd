@@ -14,18 +14,20 @@ important:[]
 },
     reducers:{
         
+      //method to set token from api
         setToken:(state,action)=>{
             state.user.token=action.payload;
             console.log(action.payload);
             return
         },
+        //method to remove token
         removeToken:(state)=>{
-          
           state.user.token=null;
           return
 
         },
         
+        //method for inbox mail
         setInbox:(state,action)=>{
     
         action.payload?.forEach(element => {
@@ -33,6 +35,8 @@ important:[]
             
         });
     },
+
+     //method for sendbox mail
        setSend:(state,action)=>{
 
         action.payload.forEach(element => {
@@ -95,6 +99,7 @@ important:[]
 
  },
          
+ //method for draft message
     setDraft:(state,action)=>{
     action.payload.forEach(element => {
     state.draft.every((msg)=>element._id!==msg._id) ? state.draft.push(element):null     
@@ -127,20 +132,21 @@ important:[]
       
       },
 
-       setStartoggler:(state,action)=>{
+  //method for star marking      
+  setStartoggler:(state,action)=>{
         
-  if (state.send.some((message)=>message._id==action.payload)) {
-    const updatedSend = state.send.map(message => {
-      if (message._id === action.payload) {
+   if (state.send.some((message)=>message._id==action.payload)) {
+        const updatedSend = state.send.map(message => {
+          if (message._id === action.payload) {
         // Toggle the starred property for the matching message
-        return { ...message, starred: !message.starred };
+            return { ...message, starred: !message.starred };
       }
-      return message; // Return unchanged messages
+         return message; // Return unchanged messages
     });
-    const updatedStarred = state.starred?.map(message => {
-      if (message._id === action.payload) {
+         const updatedStarred = state.starred?.map(message => {
+         if (message._id === action.payload) {
         // Toggle the starred property for the matching message
-        return { ...message, starred: !message.starred };
+         return { ...message, starred: !message.starred };
       }
       return message; // Return unchanged messages
     });
@@ -190,10 +196,10 @@ important:[]
        },
 
 
-       //method for labelling message as important
-       setImportanttoggler:(state,action)=>{
+   //method for labelling message as important
+  setImportanttoggler:(state,action)=>{
 
-    if (state.send.some((message)=>message._id==action.payload)) {
+      if (state.send.some((message)=>message._id==action.payload)) {
           const updatedSend = state.send.map(message => {
             if (message._id === action.payload) {
               // Toggle the starred property for the matching message

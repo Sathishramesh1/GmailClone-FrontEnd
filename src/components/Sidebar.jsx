@@ -1,5 +1,4 @@
 import { Drawer } from "@mui/material";
-import SideBarItem from './RigthSideIcon';
 import SideBarIcons from "./SideBarIcons";
 
 const Sidebar = ({openDrawer}) => {
@@ -13,7 +12,6 @@ const Sidebar = ({openDrawer}) => {
       sx={{
         '& .MuiDrawer-paper':{
             marginTop:'64px !important',
-            // marginLeft:'80px',
             marginRight:0,
             width:"240px",
             background: '#F5F5F5',

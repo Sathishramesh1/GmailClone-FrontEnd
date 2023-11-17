@@ -3,7 +3,7 @@ import Layout from '../Layout';
 import { Star, StarBorder } from '@mui/icons-material';
 import LabelImportantIcon from '@mui/icons-material/LabelImportant';
 import LabelImportantOutlinedIcon from '@mui/icons-material/LabelImportantOutlined';
-import { Box, Checkbox, IconButton, styled } from '@mui/material';
+import {  Checkbox, IconButton} from '@mui/material';
 import useApi from '../hook/useApi';
 import { API_URLS } from '../service/globalUrl';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -24,6 +24,8 @@ const token=useSelector((state)=>state.email.user.token);
 const dispatch=useDispatch();
 const navigate=useNavigate();
 
+//api endpoint
+
 const getStarredMail=useApi(API_URLS.getStarredEmail);
 const toggler=useApi(API_URLS.toggleStarredEmail);
 const mailDelete=useApi(API_URLS.deleteEmail);
@@ -32,9 +34,8 @@ const ImportantLabel=useApi(API_URLS.toggleImportantEmail);
 
 
 
-
+//naviagting to target mail
 const handleClick=(event)=>{
-
 let messageid=event.target.id;
 
 if(messageid){
@@ -56,13 +57,11 @@ try {
   
   let messageid=event.target.closest('.row').children[1].id;
 const params=messageid;
-console.log(params);
 
  const res= await mailDelete.call({},token,params);
  
  dispatch(setDelete(messageid));
 
- console.log(res);
 if(res.status){
    const update=await getStarredMail.call({},token);
    if(update.status){
@@ -79,10 +78,12 @@ if(res.status){
 }
   
 }
+
+//function to fetch data from api
 const fetchdata=async()=>{  
   try {
     const res=await getStarredMail.call({},token);
-    console.log(res);;
+    
   if(res.status){
   const data=res.data.filteredStarredEmails[0]?.starredEmails
   
@@ -102,19 +103,18 @@ fetchdata();
 
 },[]);
 
+
 //function star toggling
 const toggleStarredMail=async(event)=>{
-
+  event.preventDefault();
   try {
    
     const messageid=event.target.closest('.row').children[1].id;
     console.log(messageid);
     const params=messageid  
-    console.log(token,"jwt");
     dispatch(setStartoggler(params));
     let res=await toggler.call({},token,params);
     fetchdata();
-    console.log(res);
     
   } catch (error) {
    console.log(error);     
@@ -125,14 +125,14 @@ const toggleStarredMail=async(event)=>{
 const toggleImportantMail=async(event)=>{
   try {
     const messageid=event.target.closest('.row').children[1].id;
-  console.log(messageid);
+ 
   const params=messageid  
    
     dispatch(setImportanttoggler(params));
     
     let res=await ImportantLabel.call({},token,params);
     fetchdata();
-    console.log(res);
+    
     
   } catch (error) {
    console.log(error);     

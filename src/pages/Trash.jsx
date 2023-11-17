@@ -22,28 +22,31 @@ function Trash() {
   const dispatch=useDispatch();
   const navigate=useNavigate();
   
+  //api end point
   const getTrashEmail=useApi(API_URLS.getTrashEmail);
   const mailDelete=useApi(API_URLS.removetrash);
   
-  
+  //function to fetch data from api
   const fetchdata=async()=>{  
     try {
       const res=await getTrashEmail.call({},token);
     if(res.status){
       const data=res.data.message;
-    console.log(data);
+    
     dispatch(setTrash(data));
     }    
     } catch (error) {
       console.log(error);
     }}
   
+
   useEffect(()=>{
   fetchdata();
   
   },[]);
   
   
+  //opening target message
   const handleClick=(event)=>{
   let messageid=event.target.id;
   if(messageid){
@@ -53,15 +56,16 @@ function Trash() {
    navigate(`/trash/${messageid}`);
   }}
 
+
   //function to delete message
   const handleDelete=async(event)=>{
   try {  
   let messageid=event.target.closest('.row').children[1].id;
   const params=messageid;
-  console.log(params);
+ 
   dispatch(setDelete(messageid));
    const res= await mailDelete.call({},token,params);
-   console.log(res);
+   
   if(res.status){
      const update=await getTrashEmail.call({},token);
      if(update.status){

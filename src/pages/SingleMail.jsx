@@ -2,24 +2,22 @@ import { Box, styled } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import Layout from '../Layout'
 import {  useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux';
-import useApi from '../hook/useApi';
-import API_GMAIL from '../service/globalapi';
-import { API_URLS } from '../service/globalUrl';
+import {  useSelector } from 'react-redux';
+
 
 function SingleMail() {
     const {messageid,type}=useParams();
-    const dispatch=useDispatch();
+   
     const {inbox,send,trash,starred,important}=useSelector((state)=>state.email);
-    // const send=useSelector((state)=>state.email.send);
-    // const draft=useSelector((state)=>state.email.draft);
-    // const trash=useSelector((state)=>state.email.inbox);
+    
    
     const [message,setMessage]=useState(null);
     
     
 useEffect(()=>{
   
+
+  //finding message from which state
   const openMessage=async()=>{
     let opened
     if(type=='inbox'){
@@ -87,10 +85,6 @@ const MailContainer=styled(Box)({
     display:'flex',
     flexDirection:'column',
     justifyContent:'flex-start'  
-
-});
-
-const MailWrapper=styled('div')({
 
 });
 

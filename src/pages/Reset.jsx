@@ -3,44 +3,43 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
+import {  ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import useApi from '../hook/useApi';
 import { API_URLS } from '../service/globalUrl';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { PageContainer,ImageContainer,OuterContainer,defaultTheme } from '../components/Styles/StyledComponent';
-
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
 
 
 export default function Reset() {
+
 const naviagte=useNavigate();
 const [reset,setReset]=useState({password:''});
 const {resetToken}=useParams(); 
 
+//api for password reset
 const getReset=useApi(API_URLS.getReset);
 
-  console.log(resetToken)
+  
+  //function to handle submit
   const handleSubmit = async(event) => {
     event.preventDefault();
     event.target.reset();
     try {
      const res= await getReset.call(reset,'',resetToken);
-
      if(res.status){
-      console.log("password resetted succesfully");  
-
+  
       toast.success("Password reset Successfully", {
         position: "top-center",
         autoClose: 1500,
@@ -72,10 +71,11 @@ const getReset=useApi(API_URLS.getReset);
    
   };
 
+  //function to handle change in input
   const handlechange=(e)=>{
     e.preventDefault();
     setReset({...reset,[e.target.name]: e.target.value });
-  console.log(reset);
+  
 }
 
   return (
@@ -89,7 +89,6 @@ const getReset=useApi(API_URLS.getReset);
         <CssBaseline />
         <Box
           sx={{
-            // marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',

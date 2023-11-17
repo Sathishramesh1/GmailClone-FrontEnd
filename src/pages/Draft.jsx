@@ -26,12 +26,14 @@ const token=useSelector((state)=>state.email.user.token);
 const dispatch=useDispatch();
 const navigate=useNavigate();
 
+
+//apis for get draft mail, important and star marking
 const getDraftMail=useApi(API_URLS.getDraftEmail);
 const toggler=useApi(API_URLS.toggleStarredEmail);
 const mailDelete=useApi(API_URLS.deleteEmail);
 const ImportantLabel=useApi(API_URLS.toggleImportantEmail);
 
-
+//states to handle dialogue form editing
 const [open,setOpen]=useState(false);
 const [value,setValue]=useState({
     to:'',
@@ -52,9 +54,7 @@ const fetchdata=async()=>{
   try {
     const res=await getDraftMail.call({},token);
   if(res.status){
-    console.log(res.data);
     const data=res.data.DraftMail;
-    
   dispatch(setDraft(data));
   }
     
@@ -65,16 +65,17 @@ const fetchdata=async()=>{
   }
 
 
+
+//function to handle click on draft and open in it dialogue form
 const handleClick=(event)=>{
- 
 let messageid=event.target.id;
 
 if(messageid){
   setOpen(true);
     setMessageid(messageid);
    const editedmail=draft.find((message)=>message._id==messageid);
-   setValue({...value,to:editedmail.to,subject:editedmail.subject
-,content:editedmail.content
+   setValue({...value,to:editedmail?.to,subject:editedmail?.subject
+,content:editedmail?.content
 });
 
 }else{
@@ -90,7 +91,7 @@ if(messageid){
 
 }
 
-//
+//star marking function
 const toggleStarredMail=async(event)=>{
   event.stopPropagation()
 
@@ -98,11 +99,9 @@ try {
   const messageid=event.target.closest('.row').children[1].id;
   console.log(messageid);
   const params=messageid  
-    console.log(token,"jwt");
     dispatch(setStartoggler(params));
    
     let res=await toggler.call({},token,params);
-    console.log(res);
   
 } catch (error) {
  console.log(error);     
@@ -117,10 +116,8 @@ const toggleImportantMail=async(event)=>{
     const messageid=event.target.closest('.row').children[1].id;
   console.log(messageid);
   const params=messageid  ;
-   
     dispatch(setImportanttoggler(params));
     let res=await ImportantLabel.call({},token,params);
-    console.log(res);
     
   } catch (error) {
    console.log(error);     
@@ -137,13 +134,12 @@ try {
   
   let messageid=event.target.closest('.row').children[1].id;
 const params=messageid;
-console.log(params);
 dispatch(setDelete(messageid));
  const res= await mailDelete.call({},token,params);
- console.log(res);
+
 if(res.status){
    const update=await getDraftMail.call({},token);
-   console.log(update);
+   
    if(update.status){
     const data = update.data.DraftMail;
         dispatch(setDraft(data));
@@ -152,10 +148,8 @@ if(res.status){
 }
   
 } catch (error) {
-  
   console.log(error);
-}
-  
+} 
 }
 
 useEffect(()=>{

@@ -11,29 +11,16 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
-import { useState } from 'react';
+import {  ThemeProvider } from '@mui/material/styles';
 import { API_URLS } from '../service/globalUrl';
 import useApi from '../hook/useApi';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { toast } from 'react-toastify';
-import { Navigate, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 import { PageContainer,ImageContainer,OuterContainer,defaultTheme } from '../components/Styles/StyledComponent';
 
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 
 
@@ -63,11 +50,12 @@ const navigate=useNavigate();
 //calling end point from global url
 const getRegister=useApi(API_URLS.getRegister);
 
-const handleSubmit = async() => {
-    
+
+//function to handle submit in registration
+const handleSubmit = async(event) => {    
+  event.preventDefault();
    try {  
   const res=await getRegister.call(formik.values,'');
-  console.log("Registration successful");
   if(res.status){
     toast.success("Registered Successfully", {
       position: "top-center",
@@ -100,7 +88,7 @@ const handleSubmit = async() => {
 }
 }
 
-
+//formik validation
 const formik = useFormik({
     initialValues: {
       name: '',
@@ -128,7 +116,6 @@ const formik = useFormik({
         <CssBaseline />
         <Box
           sx={{
-            // marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -156,7 +143,6 @@ const formik = useFormik({
                   onBlur={formik.handleBlur}
                  error={formik.touched.name && Boolean(formik.errors.name)}
                  helperText={formik.touched.name && formik.errors.name}
-        
 
                 />
               </Grid>
@@ -216,7 +202,7 @@ const formik = useFormik({
             </Grid>
           </Box>
         </Box>
-        {/* <Copyright sx={{ mt: 5 }} /> */}
+      
       </Container>
       </PageContainer>
       </OuterContainer>

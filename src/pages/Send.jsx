@@ -57,6 +57,7 @@ fetchdata();
 },[setDelete]);
 
 
+//function to naviagate target email opening 
 const handleClick=(event)=>{
 
 let messageid=event.target.id;
@@ -70,17 +71,17 @@ if(messageid){
 
 }
 
-//
+// function to star marking
 const toggleStarredMail=async(event)=>{
 try {
   const messageid=event.target.closest('.row').children[1].id;
 console.log(messageid);
 const params=messageid  
-  console.log(token,"jwt");
+  
   dispatch(setStartoggler(params));
-  console.log(...send);
+  
   let res=await toggler.call({},token,params);
-  console.log(res);
+ 
   
 } catch (error) {
  console.log(error);     
@@ -93,11 +94,10 @@ try {
   
   let messageid=event.target.closest('.row').children[1].id;
 const params=messageid;
-console.log(params);
+
 dispatch(setDelete(messageid));
 
  const res= await mailDelete.call({},token,params);
- console.log(res);
 if(res.status){
    const update=await getSendMail.call({},token);
    if(update.status){
@@ -110,16 +110,17 @@ if(res.status){
 }
 }
 
+//function important labelling
 const toggleImportantMail=async(event)=>{
   try {
     const messageid=event.target.closest('.row').children[1].id;
-  console.log(messageid);
+ 
   const params=messageid  
-    console.log(token,"jwt");
+    
     dispatch(setImportanttoggler(params));
-    console.log(...send);
+   
     let res=await ImportantLabel.call({},token,params);
-    console.log(res);
+    
     
   } catch (error) {
    console.log(error);     

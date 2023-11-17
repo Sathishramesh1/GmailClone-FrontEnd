@@ -14,12 +14,16 @@ import { removeToken } from "./redux-container/slices/emailSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+
+
 const Header = ({ toggleDrawer }) => {
   const dispatch=useDispatch();
   const naviage=useNavigate();
 
   const [anchorEl, setAnchorEl] =useState(null)
   const open = Boolean(anchorEl);
+
+  //function  on avator click
   const handleClick = (event) => {
     event.stopPropagation()
     setAnchorEl(event.currentTarget);

@@ -2,7 +2,6 @@ import React from 'react'
 import Layout from '../Layout'
 import { MailContainer,Row,Message,Icons } from './Send'
 import { Box, Checkbox, IconButton, styled } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
 import { Star, StarBorder } from '@mui/icons-material';
 import LabelImportantIcon from '@mui/icons-material/LabelImportant';
 import LabelImportantOutlinedIcon from '@mui/icons-material/LabelImportantOutlined';
@@ -78,7 +77,6 @@ function Search() {
          
        ))}
       
-
        </MailContainer>
 
 

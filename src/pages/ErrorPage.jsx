@@ -11,8 +11,6 @@ function ErrorPage() {
     <ErrorContainer>
    
     <img src='https://cdn.vectorstock.com/i/1000x1000/91/19/flat-modern-design-of-error-page-2-vector-47939119.webp' alt='error-page-image'/>
-   
-   {/* <img src='https://freight.cargo.site/w/1000/q/94/i/7f291a5e5e6d65edb2dd80ffe2bea40e6b2d0caa189ab3e7711c20fb59732cf9/Gmail_01_Slide_01_Slide.gif'/> */}
     </ErrorContainer>
     </MailContainer>
 

@@ -6,14 +6,14 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import useApi from '../hook/useApi';
 import { API_URLS } from '../service/globalUrl';
-import { useDispatch, useSelector } from 'react-redux';
-import { setSend } from './redux-container/slices/emailSlice';
+import {  useSelector } from 'react-redux';
+
 
 function MailForm(props) {
    
     const [file,setFile]=useState(null);
 
-    const dispatch=useDispatch();
+    
     const token=useSelector((state)=>state.email.user.token);
 
 
@@ -32,7 +32,7 @@ const mail_send=useApi(API_URLS.compose);
     
 
 //function for file upload
-    const uploadFile=async(e)=>{
+   const uploadFile=async(e)=>{
       e.stopPropagation();
       e.preventDefault();
       let data = new FormData();
@@ -50,10 +50,14 @@ const mail_send=useApi(API_URLS.compose);
     }
      }
     
+
+
   //function to handle file selection
     const handleSelectFile = (e) =>{
       setFile(e.target.files[0]);
   }
+
+
 
   //function to handle to mail details
   const handleChange=(e)=>{
@@ -62,6 +66,7 @@ const mail_send=useApi(API_URLS.compose);
   props.setdatafromChild({...mail});
     }
 
+
   //function to send mail
     const handleSend=async(e)=>{
       e.stopPropagation();
@@ -69,7 +74,6 @@ const mail_send=useApi(API_URLS.compose);
       props.handlex();
       try {
         const res= await mail_send.call(mail,token);
-        console.log(res);
          
       } catch (error) {        
         console.log(error);
@@ -159,8 +163,7 @@ if(props.setClicked){
         upload
       </Upload>
 
-      </FormField>
-          
+      </FormField>     
       <ButtonWrap>
             <ButtonGroup>
           <Button autoFocus   variant="contained" color="primary"
@@ -173,7 +176,6 @@ if(props.setClicked){
             <ExpandMoreIcon/>
           </Button>
           </ButtonGroup>
-          
           
       <IconButton
         aria-label="more"
