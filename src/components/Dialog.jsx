@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -7,12 +6,10 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import Typography from '@mui/material/Typography';
 import MailForm from './MailForm';
-import { Box, ButtonGroup, NativeSelect, Select } from '@mui/material';
 import useApi from '../hook/useApi';
 import { API_URLS } from '../service/globalUrl';
-import { useState,useEffect } from 'react';
+import { useState} from 'react';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -23,6 +20,8 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     justifyContent:'space-between'
   },
 }));
+
+
 
 export default function CustomizedDialogs(props) {
 
@@ -44,9 +43,9 @@ const saveDraft = async(mail)=>{
 
   try {
     const token=localStorage.getItem('token');
-    console.log("dddd",token);
+    
     const res = await Save.call({...mail},token);
-    console.log(res);
+    
     if(res.status){
       console.log(res,"drt");
     }
@@ -56,12 +55,12 @@ const saveDraft = async(mail)=>{
   }
 }
 
+
+//function close dialogue and save data
 const check=()=>{
  
   handlex();
-  console.log(datafromChild)
   saveDraft(datafromChild);
-  console.log("from close");
 
 }
 
