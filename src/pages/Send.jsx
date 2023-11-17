@@ -38,6 +38,8 @@ const fetchdata=async()=>{
     const data=res.data.SendEmail;
   
   dispatch(setSend(data));
+  console.log(data);
+  console.log(send)
   } 
   } catch (error) {
     console.log(error);
@@ -52,7 +54,7 @@ useEffect(()=>{
 
 fetchdata();
 
-},[]);
+},[setDelete]);
 
 
 const handleClick=(event)=>{
@@ -93,6 +95,7 @@ try {
 const params=messageid;
 console.log(params);
 dispatch(setDelete(messageid));
+
  const res= await mailDelete.call({},token,params);
  console.log(res);
 if(res.status){
@@ -175,8 +178,8 @@ const toggleImportantMail=async(event)=>{
          </Icons>
           <Message  id={message._id}  >
           <div >{message.sender_name||message.reciver_name}</div>
-         <div>{message.subject}</div>
-         <div>{message.date.slice(0,10)}</div>
+         <div>{message?.subject?(message.subject):("")}</div>
+         <div>{message.date?.slice(0,10)}</div>
          <div >
 
           <IconButton onClick={handleDelete} className='delete'>

@@ -21,7 +21,7 @@ important:[]
         },
         removeToken:(state)=>{
           
-          state.user.token=localStorage.setItem('token',null);
+          state.user.token=null;
           return
 
         },

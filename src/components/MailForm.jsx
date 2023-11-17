@@ -1,17 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import { Button, ButtonGroup, DialogContent, FormLabel, IconButton, InputBase, Paper, styled } from '@mui/material';
-import { Field, Form } from 'formik';
-import axios from "axios";
+import { Button, ButtonGroup,  FormLabel, IconButton, InputBase, Paper, styled } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import AttachFileIcon from "@mui/icons-material/AttachFile";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import useApi from '../hook/useApi';
 import { API_URLS } from '../service/globalUrl';
 import { useDispatch, useSelector } from 'react-redux';
-import { setInbox } from './redux-container/slices/emailSlice';
+import { setSend } from './redux-container/slices/emailSlice';
 
 function MailForm(props) {
    
@@ -20,8 +16,7 @@ function MailForm(props) {
     const dispatch=useDispatch();
     const token=useSelector((state)=>state.email.user.token);
 
-//getting token from local storage
-// const token=localStorage.getItem('token');
+
     const [mail,setMail ]=useState({
       to:'',
       subject:'',
@@ -55,7 +50,7 @@ const mail_send=useApi(API_URLS.compose);
     }
      }
     
-     //function to handle file selection
+  //function to handle file selection
     const handleSelectFile = (e) =>{
       setFile(e.target.files[0]);
   }
@@ -75,8 +70,7 @@ const mail_send=useApi(API_URLS.compose);
       try {
         const res= await mail_send.call(mail,token);
         console.log(res);
-          
-        console.log("from send");
+         
       } catch (error) {        
         console.log(error);
       }
@@ -91,7 +85,7 @@ if(props.value){
 if(props.setClicked){
   document.getElementById('send').onclick=function(){
     props.setClicked(true);
-    // console.log("from mail");
+   
   }
 }
 
@@ -121,7 +115,6 @@ if(props.setClicked){
     onChange={handleChange}
     maxRows={10}
     style={{width:'100%'}}
-    
      
     />
       </ToField>

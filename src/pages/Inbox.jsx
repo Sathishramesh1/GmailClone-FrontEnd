@@ -118,7 +118,7 @@ const params=messageid
     }
    fetchdata();
    
-  },[]);
+  },[setDelete]);
   
   return (
     <Layout>

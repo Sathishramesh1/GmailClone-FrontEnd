@@ -5,7 +5,6 @@ import {
   HelpOutlineOutlined,
   SettingsOutlined,
   AppsOutlined,
-  AccountCircleOutlined,
 } from "@mui/icons-material";
 import '../App.css'
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -27,20 +26,11 @@ const Header = ({ toggleDrawer }) => {
   };
   const handleClose = () => {
     setAnchorEl(null);
+    localStorage.removeItem('token');
     dispatch(removeToken());
     naviage("/")
     
   };
-
-
-
-const searchbar=()=>{
-
- const searchInput= document.getElementById('search').value;
-
-
-
-}
 
 
 
@@ -67,7 +57,7 @@ const searchbar=()=>{
           id="search"
           name='search'
           type="text"
-          onChange={searchbar}
+         
           />
            <IconButton>
           <Tune color="action" />
@@ -87,7 +77,6 @@ const searchbar=()=>{
           <AppsOutlined color="action"  />
           </IconButton>
           <IconButton onClick={handleClick} >
-         
           <Avatar sx={{width:36,height:36,fontSize:14,background:'green'}}>S</Avatar>
           </IconButton>
           <Menu
@@ -122,11 +111,9 @@ const StyledAppBar = styled(AppBar)({
   width:'100% !important',
   paddingRight:"0px ! important",
 
- 
-
 });
+
 const StyledToolbar=styled(Toolbar)({
-    // width:"100%",
     background: "#f5f5f5",
     display:"grid",
     gridTemplateColumns:"15% auto 20%"
@@ -139,7 +126,7 @@ const SearchRapper = styled(Box)({
   borderRadius: 8,
   marginRight:8,
   height:'48px',
-  // width:'100% !important',
+ 
  
   display: "flex",
   alignItems: "center",
@@ -155,17 +142,12 @@ const SearchRapper = styled(Box)({
 const IconsWrapper = styled(Box)({
 
   display: "grid",
-  // justifyContent: "center",
   width:"70%",
   gridTemplateRows:"repeat(4,40)",
   background: "#f5f5f5",
   marginLeft:'20%',
   
- 
-  " & > *":{
-   
-    
-  }
+
 });
 
 const LogoWrapper=styled(Box)({
@@ -177,6 +159,5 @@ const LogoWrapper=styled(Box)({
 const Icon=styled(Box)({
    display:'flex',
    justifyContent:'space-between'
-
 
 })
