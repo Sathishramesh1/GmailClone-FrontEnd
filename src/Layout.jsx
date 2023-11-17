@@ -24,10 +24,8 @@ function Layout({children}) {
 
   return (
     <>
-    <LayoutWrapper style={{}}>
+    <LayoutWrapper>
       <Header toggleDrawer={toggleDrawer} />
-      
-      
       <Main>
       <LeftIconBarWrapper>
         {/* <LeftIconBar/> */}
@@ -63,9 +61,7 @@ function Layout({children}) {
           </TabBarItems>
         </TabBar>
       <MailContainer >
-      {/* <Box sx={{display:'flex', width:'98%'}}>
-         
-      </Box> */}
+     
      {children}
         </MailContainer>
           
@@ -95,13 +91,9 @@ const LayoutWrapper=styled(Paper)({
    })
    
    const Main=styled(Box)({
-    
      display:"grid",
-     // flexDirection:'row',
      gridTemplateColumns:"0% auto 5%",
      border:'2px solid red',
-
-    //  height:'100%',
      width:'100%',
     height:'100%',
     '@media (max-width: 600px)': {
@@ -110,7 +102,7 @@ const LayoutWrapper=styled(Paper)({
      
      
     
-    })
+    });
    const RigthSideIconBar=styled(Box)({
       display:'flex',
       flexDirection:'column',

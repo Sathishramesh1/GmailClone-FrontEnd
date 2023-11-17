@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, keyframes, styled, ThemeProvider } from '@mui/material/styles';
+import {  styled, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import {useState} from 'react'
 import useApi from '../hook/useApi';
@@ -23,6 +23,7 @@ import {setToken} from '../components/redux-container/slices/emailSlice'
 import { PageContainer,ImageContainer,OuterContainer,defaultTheme } from '../components/Styles/StyledComponent';
 import 'react-toastify/dist/ReactToastify.css';
 import "animate.css/animate.min.css";
+
 
 
 
@@ -60,12 +61,15 @@ export default function SignIn() {
   
     event.preventDefault();
     try {
+
+     
       const zoomTransition = cssTransition({
         enter: 'animate__animated animate__zoomIn',
         exit: 'animate__animated animate__zoomOut',
       });
-         toast.loading(<Loading>
-
+        
+        const isSmallScreen=screen.width<600
+        toast.loading(<Loading>
           
 <img src='https://freight.cargo.site/w/1000/q/94/i/7f291a5e5e6d65edb2dd80ffe2bea40e6b2d0caa189ab3e7711c20fb59732cf9/Gmail_01_Slide_01_Slide.gif'/>
           
@@ -73,16 +77,13 @@ export default function SignIn() {
             position:toast.POSITION.TOP_LEFT,
             transition: zoomTransition,  
            style:{
-            width:'100vw',
+           width:isSmallScreen?"980px":"100vw",   
            
-    '@media (max-width: 600px)': {
-      width:'980px',
-      height:'100vh'
-    },
-            
-           }
+           },
             
           });
+
+          
             
 
   const res= await getlogin.call(user,'');
@@ -230,16 +231,26 @@ export default function SignIn() {
 
 const Loading=styled(Box)({
   display:'flex',
-  width:"100%",
+  width:"100vw",
   height:'100vh',
   placeItems:'center',
+  
   "&>img":{
     objectFit:'contain',
     width:'100%',
     height:'100%'
   },
   '@media (max-width: 600px)': {
-    width:'980px',
-    height:'100vh'
+    display:'flex',
+    width:'100vw',
+    height:'100vh',
+    placeItems:'center',
+    "&>img":{
+      objectFit:'contain',
+      width:'100%',
+      height:'100%',
+      marginLeft:'60vw'
+      
+    },
   },
 })
