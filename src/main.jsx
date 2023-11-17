@@ -5,7 +5,7 @@ import { Provider } from 'react-redux' ;
 import { store, persistor } from './components/redux-container/slices/persistant.js';
 import { PersistGate } from 'redux-persist/integration/react'
 import { BounceLoader } from 'react-spinners';
-import { ToastContainer } from 'react-toastify';
+
 
 
 const App=lazy(() => import('./App.jsx'));
@@ -20,8 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <BounceLoader
   color="#1d71e2"
   size={200}
-  cssOverride={{margin:'15% auto'}}
-/></div> }>
+  cssOverride={{margin:'15% auto'}}/></div> }>
   <App />
  
   </Suspense>
