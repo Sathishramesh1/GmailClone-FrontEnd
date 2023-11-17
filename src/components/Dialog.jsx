@@ -41,8 +41,7 @@ const handlex=()=>{
 const Save=useApi(API_URLS.saveDraftEmails);
 
 const saveDraft = async(mail)=>{
-      
-   
+
   try {
     const token=localStorage.getItem('token');
     console.log("dddd",token);
@@ -99,24 +98,4 @@ const check=()=>{
   );
 }
 
-// const ButtonWrap=styled(Box)({
-//   display:'flex',
-//   alignItems:'center',
-  
- 
-//   "&>Button:first-child":{
-//     marginLeft:10,
-//     borderRadius:18
-//   }
 
-// });
-
-// const ScheduleButton=styled(NativeSelect)({
-//   width:'10',
-//   height:'min-content',
-
-//   "& > *":{
-//     minWidth:10
-//   }
-
-// })
