@@ -4,6 +4,7 @@ import { BrowserRouter, Navigate, Route,  Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import {  useSelector } from 'react-redux';
 import ErrorPage from './pages/ErrorPage';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -27,7 +28,7 @@ const SingleMail=lazy(() => import('./pages/SingleMail'));
 function App() {
 
 const token=useSelector((state)=>state.email.user.token);
-
+console.log(token)
 
 
   return (
@@ -38,9 +39,9 @@ const token=useSelector((state)=>state.email.user.token);
 
       <Route path='/register' element={<Suspense ><SignUp/></Suspense>}/>
         <Route exact path='/' element={<Suspense><SignIn/></Suspense>}/>
-        <Route  path='/inbox' element={token?<Suspense ><Inbox/></Suspense>:<Navigate to='/'></Navigate>} >
+        <Route  path='/inbox' element={token!=null ? (<Suspense><Inbox/></Suspense>) :(<Navigate to='/'></Navigate>)} >
         </Route>
-        <Route path='/:type/:messageid' element={<SingleMail/>}></Route>
+        <Route path='/:type/:messageid' element={<Suspense><SingleMail/></Suspense>}></Route>
 
       <Route  path='/send' element={<Suspense><Send/></Suspense>} />
       <Route path='/draft' element={<Suspense><Draft/></Suspense>} />
@@ -50,11 +51,11 @@ const token=useSelector((state)=>state.email.user.token);
         <Route  path='/forget' element={<Suspense><Forget/></Suspense>}/>
         <Route  path='/reset/:resetToken' element={<Suspense><Reset/></Suspense>}/>
         
-        <Route path='*' Component={ErrorPage}/>
+        <Route path='*' element={<ErrorPage/>}/>
       </Routes>
        </BrowserRouter>
-       <ToastContainer/>
        
+       <ToastContainer/>
        </div>
   )
 }
