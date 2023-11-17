@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Box, Container, createTheme} from '@mui/material';
+import { Box, Container, createTheme,} from '@mui/material';
 
 
 export const Row=styled(Box)({
@@ -63,6 +63,9 @@ export const PageContainer=styled(Container)({
 });
 
 
+
+
+
 export const OuterContainer=styled(Box)({
   display:'flex ',
   justifyContent:'center',
@@ -70,12 +73,9 @@ export const OuterContainer=styled(Box)({
   paddingBottom:'15%',
   flexDirection:'row',
   height:'100%',
+  // background: 'linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%)',
+  background: 'linear-gradient(90deg, #1CB5E0 0%, #000851 100%)',
   
-  background: 'linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%)',
- 
-  '@media (max-width: 600px)': {
-    height:'1550px'
-  }
   
 })
 

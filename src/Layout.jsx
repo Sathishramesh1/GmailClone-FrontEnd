@@ -178,7 +178,6 @@ const LayoutWrapper=styled(Paper)({
    });
    
    const MainBodyWrapper=styled('div')({
-     
      height:'100%',
       display:'flex',
       flexDirection:'column',
