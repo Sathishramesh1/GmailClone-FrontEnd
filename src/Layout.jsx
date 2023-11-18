@@ -87,6 +87,7 @@ const LayoutWrapper=styled(Paper)({
     position:'fixed', 
     width:'100%',
     
+    
    
    })
    
@@ -97,7 +98,7 @@ const LayoutWrapper=styled(Paper)({
      width:'100%',
     height:'100%',
     '@media (max-width: 600px)': {
-      height:'1600px',
+      height:'1600px ! important',
     },
      
      

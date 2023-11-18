@@ -12,7 +12,9 @@ import {  ThemeProvider } from '@mui/material/styles';
 import useApi from '../hook/useApi';
 import { API_URLS } from '../service/globalUrl';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
 import { PageContainer,ImageContainer,OuterContainer ,defaultTheme} from '../components/Styles/StyledComponent';
+import { Link } from '@mui/material';
 
 
 
@@ -83,13 +85,15 @@ const getForget=useApi(API_URLS.getForget);
     <ImageContainer>
       <img src='https://img.freepik.com/free-vector/forgot-password-concept-illustration_114360-1123.jpg?w=740&t=st=1700036792~exp=1700037392~hmac=8e4fc4e1f80bac55e98121de8cfe2e745874c8753e51678f876b2f8ba62a7fa1' alt='forget-password-image'/>
     </ImageContainer>
-      <Container component="main" maxWidth="xs">
+      <Container   maxWidth="xs" component="main" >
         <CssBaseline />
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            
+           
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -98,7 +102,7 @@ const getForget=useApi(API_URLS.getForget);
           <Typography component="h1" variant="h5">
             Forget Password
           </Typography>
-          <Box component="form" id='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" id='form' onSubmit={handleSubmit}  sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -121,10 +125,11 @@ const getForget=useApi(API_URLS.getForget);
             >
               Send
             </Button>
-            <Grid container>
+
+            <Grid container gap={10}>
               <Grid item xs>
                 <Link href="/" variant="body2">
-                   Go  to Login Page
+                    Login Page
                 </Link>
               </Grid>
               <Grid item>

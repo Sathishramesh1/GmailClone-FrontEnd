@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import CreateIcon from '@mui/icons-material/Create';
 import { Box, Button, Container, ListItem } from '@mui/material';
-import { Sidebar_icons } from './config/sidebar';
+import { Sidebar_icons } from './config/sidebar.js';
 import CustomizedDialogs from './Dialog';
 import { useNavigate } from 'react-router-dom';
 import { SideIconWrapper,Compose,ComposeWrapper,FeaturesWrapper } from './Styles/StyledComponent';
@@ -42,7 +42,7 @@ const handleNavigate=(elementname)=>{
         {Sidebar_icons.map((element)=>(
             <ListItem key={element.name} onClick={()=>handleNavigate(element.name)} >
               
-            <element.icon sx={{paddingRight:"1em"}}>
+            <element.icon sx={{paddingRight:"10px"}}>
             </element.icon>
             {element.title}
             

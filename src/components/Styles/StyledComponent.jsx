@@ -44,7 +44,7 @@ export const Message=styled('div')({
 
 export const PageContainer=styled(Container)({
   display:'flex',
-  width:'90%',
+  width:'90% ! important',
   height:'100%',
   justifyContent:'space-evenly',
   alignItems:'center ',
@@ -56,7 +56,10 @@ export const PageContainer=styled(Container)({
   marginTop:'7%',
   borderRadius:'2em',
   '@media (max-width: 600px)': {
-    height:'100vh'
+   
+    height:'100dvh',
+   
+    
   }
   
   
@@ -76,6 +79,12 @@ export const OuterContainer=styled(Box)({
   // background: 'linear-gradient(90deg, #FC466B 0%, #3F5EFB 100%)',
   background: 'linear-gradient(90deg, #1CB5E0 0%, #000851 100%)',
   
+
+  '@media (max-width: 600px)': {
+    height:'1600px',
+    display:'flex',
+    alignItems:'baseline'
+  }
   
 })
 
