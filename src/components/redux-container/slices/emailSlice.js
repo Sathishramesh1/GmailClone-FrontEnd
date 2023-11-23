@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 //creating cartslice
 
 export const emailSlice=createSlice({
@@ -27,6 +26,7 @@ important:[]
         //method to remove token
         removeToken:(state)=>{
           state.user.token=null;
+          
           return
 
         },
@@ -128,10 +128,10 @@ important:[]
 
        setTrash:(state,action)=>{
 
-        action.payload?.forEach(element => {
-          state.trash.every((msg)=>element?._id!==msg?._id) ? state.trash.push(element):null 
+       const updatedtrash=action.payload
+       return {...state,trash:updatedtrash}
          
-     });
+    
 
       
       },

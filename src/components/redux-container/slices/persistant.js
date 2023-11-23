@@ -19,6 +19,7 @@ const persistConfig = {
     version: 1,
     storage,
     stateReconciler: autoMergeLevel2, // or other reconciliation strategy
+    
 };
 
 const persistedReducer = persistReducer(persistConfig, emailSlice);
@@ -34,5 +35,9 @@ const store = configureStore({
 });
 
 const persistor = persistStore(store);
+
+
+
+
 
 export { store, persistor };

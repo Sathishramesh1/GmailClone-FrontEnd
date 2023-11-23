@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 
 
 
+
 const Header = ({ toggleDrawer }) => {
   const dispatch=useDispatch();
   const navigate=useNavigate();
@@ -41,7 +42,9 @@ const Header = ({ toggleDrawer }) => {
     event.stopPropagation()
     setAnchorEl(null);
     localStorage.removeItem('token');
+    localStorage.clear();
     dispatch(removeToken());
+   
     navigate("/")
     
   };

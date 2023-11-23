@@ -80,7 +80,7 @@ function Trash() {
   return (
    <Layout >
     <MailContainer>
-       {trash?.map((message)=>(
+       {trash.length>0 ? (trash.map((message)=>(
          <Row key={message._id} className='row' onClick={handleClick} > 
          <Icons>
           <IconButton>
@@ -110,7 +110,7 @@ function Trash() {
          </div>
          </Message>
          </Row>
-       ))}
+       )) ): (<h3>No Message Deleted yet</h3>) }
        </MailContainer>
    </Layout>
   )
