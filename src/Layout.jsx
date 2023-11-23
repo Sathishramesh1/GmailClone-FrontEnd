@@ -12,6 +12,8 @@ import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 import GroupOutlinedIcon from '@mui/icons-material/GroupOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import Paper from '@mui/material/Paper';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Layout({children}) {
@@ -70,7 +72,7 @@ function Layout({children}) {
          <RigthSideIcon/>
       </RigthSideIconBar>
       </Main>
-      
+     
       </LayoutWrapper>
       
     </>
@@ -146,7 +148,7 @@ const LayoutWrapper=styled(Paper)({
       
       "& >*":{
         display:'flex',
-       padding:" 10px 0 10px 0",
+       padding:" 10px 0 0px 0",
        gap:'10px',
        
         

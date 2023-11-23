@@ -24,7 +24,6 @@ const SingleMail=lazy(() => import('./pages/SingleMail'));
 
 
 
-
 function App() {
 
 const token=useSelector((state)=>state.email.user.token);
@@ -53,9 +52,11 @@ console.log(token)
         
         <Route path='*' element={<ErrorPage/>}/>
       </Routes>
+      <ToastContainer />
        </BrowserRouter>
        
-       <ToastContainer/>
+       
+      
        </div>
   )
 }

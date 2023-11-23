@@ -11,15 +11,16 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import Avatar from '@mui/material/Avatar';
 import { useState } from "react";
 import { removeToken } from "./redux-container/slices/emailSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
 
 const Header = ({ toggleDrawer }) => {
   const dispatch=useDispatch();
-  const naviage=useNavigate();
-
+  const navigate=useNavigate();
+  const avatorLetter=useSelector((state)=>state.email.user.email).slice(0,1);
+  
   const [anchorEl, setAnchorEl] =useState(null)
   const open = Boolean(anchorEl);
 
@@ -28,11 +29,20 @@ const Header = ({ toggleDrawer }) => {
     event.stopPropagation()
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+
+
+  //handle menu close
+  const menuClose=(event)=>{
+    event.stopPropagation();
+    setAnchorEl(null);
+  }
+  //handle logout
+  const handleClose = (event) => {
+    event.stopPropagation()
     setAnchorEl(null);
     localStorage.removeItem('token');
     dispatch(removeToken());
-    naviage("/")
+    navigate("/")
     
   };
 
@@ -81,13 +91,13 @@ const Header = ({ toggleDrawer }) => {
           <AppsOutlined color="action"  />
           </IconButton>
           <IconButton onClick={handleClick} >
-          <Avatar sx={{width:36,height:36,fontSize:14,background:'green'}}>S</Avatar>
+          <Avatar sx={{width:36,height:36,fontSize:14,background:'green',textTransform:'uppercase'}}>{avatorLetter}</Avatar>
           </IconButton>
           <Menu
         id="basic-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={menuClose}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}
@@ -150,6 +160,7 @@ const IconsWrapper = styled(Box)({
   gridTemplateRows:"repeat(4,40)",
   background: "#f5f5f5",
   marginLeft:'20%',
+  
   
 
 });

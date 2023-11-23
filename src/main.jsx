@@ -6,13 +6,11 @@ import { store, persistor } from './components/redux-container/slices/persistant
 import { PersistGate } from 'redux-persist/integration/react'
 import { BounceLoader } from 'react-spinners';
 
-
-
-const App=lazy(() => import('./App.jsx'));
+const App = lazy(() => import('./App.jsx'));
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+ 
   <Provider store={store}>
   <PersistGate loading={null} persistor={persistor}>
   <Suspense fallback={
@@ -28,7 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </PersistGate>
     </Provider>
     
-    </React.StrictMode>
+   
 )
 
 

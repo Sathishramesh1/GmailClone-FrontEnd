@@ -19,7 +19,7 @@ import { API_URLS } from '../service/globalUrl';
 import { cssTransition, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from 'react-redux';
-import {setToken} from '../components/redux-container/slices/emailSlice'
+import {setToken,setEmail} from '../components/redux-container/slices/emailSlice'
 import { PageContainer,ImageContainer,OuterContainer,defaultTheme } from '../components/Styles/StyledComponent';
 import 'react-toastify/dist/ReactToastify.css';
 import "animate.css/animate.min.css";
@@ -48,7 +48,7 @@ export default function SignIn() {
         
         const isSmallScreen=screen.width<600 ;
 
-        toast.loading(<Loading>
+        toast.loading(<Loading >
           
 <img src='https://freight.cargo.site/w/1000/q/94/i/7f291a5e5e6d65edb2dd80ffe2bea40e6b2d0caa189ab3e7711c20fb59732cf9/Gmail_01_Slide_01_Slide.gif'/>
           
@@ -72,6 +72,7 @@ export default function SignIn() {
         if(res.status){
           const token=res.data.jwttoken
           dispatch(setToken(token));
+          dispatch(setEmail(user.email));
           localStorage.setItem('token',token);
           toast.success("Login Successfully", {
             position: "top-center",
@@ -198,7 +199,7 @@ export default function SignIn() {
 }
 
 
-const Loading=styled(Box)({
+const Loading=styled('div')({
   display:'flex',
   width:"100vw",
   height:'100vh',

@@ -191,7 +191,7 @@ const toggleImportantMail=async(event)=>{
         
          </Row>
          
-       ))):(<h3>No Messages iN Your send box</h3>)}
+       ))):(<h3>No Messages in Your Send box</h3>)}
       
        </MailContainer>
     </Layout>

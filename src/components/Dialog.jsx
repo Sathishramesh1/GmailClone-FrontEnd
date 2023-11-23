@@ -10,6 +10,8 @@ import MailForm from './MailForm';
 import useApi from '../hook/useApi';
 import { API_URLS } from '../service/globalUrl';
 import { useState} from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -48,6 +50,17 @@ const saveDraft = async(mail)=>{
     
     if(res.status){
       console.log(res,"drt");
+      
+      toast.info(' Message saved as Draft!', {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     }
     
   } catch (error) {
@@ -59,9 +72,11 @@ const saveDraft = async(mail)=>{
 //function close dialogue and save data
 const check=()=>{
  
-  handlex();
+  handlex();//closing dialogue
+  if(datafromChild.to||datafromChild.subject ||datafromChild.content || datafromChild.content){
   saveDraft(datafromChild);
-
+  setdatafromChild({to:"",subject:'',content:"",attachment:""});
+  }
 }
 
   return (

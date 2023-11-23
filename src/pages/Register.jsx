@@ -51,11 +51,15 @@ const navigate=useNavigate();
 const getRegister=useApi(API_URLS.getRegister);
 
 
+
+
+
 //function to handle submit in registration
-const handleSubmit = async(event) => {    
-  event.preventDefault();
+const handleSubmit = async() => {    
+ 
    try {  
-  const res=await getRegister.call(formik.values,'');
+    console.log(formik.values)
+  const res= await getRegister.call(formik.values,'');
   if(res.status){
     toast.success("Registered Successfully", {
       position: "top-center",
@@ -68,7 +72,7 @@ const handleSubmit = async(event) => {
       theme: "colored",
     });
     navigate('/');
-    return
+    
   }else{
     
     toast.error("Unable to Register", {
@@ -90,17 +94,19 @@ const handleSubmit = async(event) => {
 
 //formik validation
 const formik = useFormik({
-    initialValues: {
-      name: '',
-      email:'',
-      password: '',
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-       handleSubmit();
-       formik.resetForm();
-    },
-  });
+  initialValues: {
+    name: '',
+    email:'',
+    password: '',
+  },
+  validationSchema: validationSchema,
+  onSubmit: () => {
+     handleSubmit();
+     formik.resetForm();
+  },
+});
+
+
 
 
   return (

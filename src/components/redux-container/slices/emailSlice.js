@@ -16,9 +16,13 @@ important:[]
         
       //method to set token from api
         setToken:(state,action)=>{
-            state.user.token=action.payload;
-            console.log(action.payload);
+            state.user.token=action.payload
             return
+        },
+        setEmail:(state,action)=>{
+           state.user.email=action.payload
+           console.log(action.payload);
+           return
         },
         //method to remove token
         removeToken:(state)=>{
@@ -266,6 +270,6 @@ important:[]
 });
 
 export const {setToken,setInbox,setSend,setDelete,setDraft,setStarred, setImportant,setStartoggler,setImportanttoggler, 
-  setTrash,removeToken
+  setTrash,removeToken,setEmail
 }=emailSlice.actions
 export default emailSlice.reducer;

@@ -42,7 +42,7 @@ const handleNavigate=(elementname)=>{
         {Sidebar_icons.map((element)=>(
             <ListItem key={element.name} onClick={()=>handleNavigate(element.name)} >
               
-            <element.icon sx={{paddingRight:"10px"}}>
+            <element.icon sx={{  marginRight:'10px'}} >
             </element.icon>
             {element.title}
             

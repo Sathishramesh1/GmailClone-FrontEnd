@@ -7,16 +7,15 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import useApi from '../hook/useApi';
 import { API_URLS } from '../service/globalUrl';
 import {  useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function MailForm(props) {
    
     const [file,setFile]=useState(null);
-
-    
     const token=useSelector((state)=>state.email.user.token);
-
-
     const [mail,setMail ]=useState({
       to:'',
       subject:'',
@@ -61,6 +60,8 @@ const mail_send=useApi(API_URLS.compose);
 
   //function to handle to mail details
   const handleChange=(e)=>{
+    e.stopPropagation();
+   
   setMail({...mail,[e.target.name]:e.target.value});
   // console.log(mail);
   props.setdatafromChild({...mail});
@@ -74,6 +75,18 @@ const mail_send=useApi(API_URLS.compose);
       props.handlex();
       try {
         const res= await mail_send.call(mail,token);
+        if(res.status){
+        toast.success('Mail sent!', {
+          position: "top-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          });
+        }
          
       } catch (error) {        
         console.log(error);
@@ -166,7 +179,7 @@ if(props.setClicked){
       </FormField>     
       <ButtonWrap>
             <ButtonGroup>
-          <Button autoFocus   variant="contained" color="primary"
+          <Button   variant="contained" color="primary" 
           onClick={handleSend}
           id='send'
           >
@@ -224,6 +237,11 @@ const FormField=styled(Box)({
 const ButtonWrap=styled(Box)({
   display:'flex',
   flexDirection:'row',
+  "& >:focus":{
+    border:'none',
+      outline:'none'
+
+  }
 });
 
 
