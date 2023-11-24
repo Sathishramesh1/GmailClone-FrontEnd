@@ -11,14 +11,16 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {  ThemeProvider } from '@mui/material/styles';
+import {  ThemeProvider, styled } from '@mui/material/styles';
 import { API_URLS } from '../service/globalUrl';
 import useApi from '../hook/useApi';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { toast } from 'react-toastify';
+import { cssTransition, toast } from 'react-toastify';
 import {  useNavigate } from 'react-router-dom';
 import { PageContainer,ImageContainer,OuterContainer,defaultTheme } from '../components/Styles/StyledComponent';
+import { BounceLoader } from 'react-spinners';
+
 
 
 
@@ -58,8 +60,30 @@ const getRegister=useApi(API_URLS.getRegister);
 const handleSubmit = async() => {    
  
    try {  
-    console.log(formik.values)
+    
+    const zoomTransition = cssTransition({
+      enter: 'animate__animated animate__zoomIn',
+      exit: 'animate__animated animate__zoomOut',
+    });
+      
+      const isSmallScreen=screen.width<600 ;
+
+
+    toast.loading(<Loading>
+         <BounceLoader
+  color="#1d71e2"
+  size={200}
+  cssOverride={{margin:'15% auto'}}/>
+      
+    </Loading>,{
+       position:toast.POSITION.TOP_LEFT,
+            transition: zoomTransition,  
+           style:{
+           width:isSmallScreen?"980px":"100vw",   }
+
+    })
   const res= await getRegister.call(formik.values,'');
+  toast.dismiss();
   if(res.status){
     toast.success("Registered Successfully", {
       position: "top-center",
@@ -217,3 +241,11 @@ const formik = useFormik({
   );
 }
 
+const Loading=styled('div')({
+  display:'flex',
+  width:"100vw",
+  height:'100vh',
+  placeItems:'center',
+
+
+})
