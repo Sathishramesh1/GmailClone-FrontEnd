@@ -168,10 +168,12 @@ const LayoutWrapper=styled(Paper)({
      borderRadius:'20px',
      borderTopLeftRadius:'1rem',
      borderTopRightRadius:0 ,
-     overflowY:'scroll',
+     overflowY:'auto',
      flexWrap:'nowrap',
      borderBottom:'1px solid grey',
      color:'black',
+     
+     
      '@media (max-width: 600px)': {
       height:'100%',
     },

@@ -111,6 +111,13 @@ export default function SignIn() {
         setUser({...user,[e.target.name]: e.target.value });
     }
 
+
+    const handleDemo=()=>{
+      setUser({...user,email:"sathishmech2k13@gmail.com",password:'1234567890'});
+      handleSubmit();
+
+    }
+
   return (
      <ThemeProvider theme={defaultTheme}>
      <OuterContainer>
@@ -151,6 +158,7 @@ export default function SignIn() {
               autoComplete="email"
               autoFocus
               onChange={handlechange}
+              value={user.email}
             />
             <TextField
               margin="normal"
@@ -162,6 +170,7 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
               onChange={handlechange}
+              value={user.password}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -171,9 +180,18 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 2, mb: 2 }}
             >
               Sign In
+            </Button>
+            <Button
+              type="click"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 2, mb: 2 }}
+              onClick={handleDemo}
+            >
+              Demo Login
             </Button>
             <Grid container>
               <Grid item xs>

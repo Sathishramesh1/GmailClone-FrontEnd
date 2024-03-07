@@ -22,7 +22,9 @@ export const MailContainer=styled('div')({
     width:"100%",
     height:'100%',
     justifyContent:'flex-start',
-  
+    
+   
+ 
 });
 
 export const Icons=styled('div')({
